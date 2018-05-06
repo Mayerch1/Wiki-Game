@@ -53,26 +53,38 @@
             this.depthLbl = new System.Windows.Forms.Label();
             this.depthBox = new System.Windows.Forms.NumericUpDown();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.dateCheck = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.delayLbl = new System.Windows.Forms.Label();
-            this.delayBox = new System.Windows.Forms.NumericUpDown();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.panel2 = new System.Windows.Forms.Panel();
             this.path4Lbl = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.delayLbl = new System.Windows.Forms.Label();
+            this.delayBox = new System.Windows.Forms.NumericUpDown();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.blackListButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.msgButton = new System.Windows.Forms.Button();
+            this.blacklistContext = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.yearsToolStrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.customBlacklistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.msgContext = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.httpErrorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ruleViolationlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rekursionStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.abortReasonsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.depthBox)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.delayBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.panel2.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
+            this.blacklistContext.SuspendLayout();
+            this.msgContext.SuspendLayout();
             this.SuspendLayout();
             // 
             // startBtn
             // 
             this.startBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.startBtn.Location = new System.Drawing.Point(7, 591);
+            this.startBtn.Location = new System.Drawing.Point(7, 551);
             this.startBtn.Margin = new System.Windows.Forms.Padding(2);
             this.startBtn.Name = "startBtn";
             this.startBtn.Size = new System.Drawing.Size(61, 21);
@@ -119,7 +131,7 @@
             this.logBox.Margin = new System.Windows.Forms.Padding(2);
             this.logBox.Name = "logBox";
             this.logBox.ReadOnly = true;
-            this.logBox.Size = new System.Drawing.Size(609, 534);
+            this.logBox.Size = new System.Drawing.Size(694, 494);
             this.logBox.TabIndex = 4;
             this.logBox.Text = "";
             // 
@@ -257,7 +269,7 @@
             // abortCheck
             // 
             this.abortCheck.AutoSize = true;
-            this.abortCheck.Location = new System.Drawing.Point(253, 4);
+            this.abortCheck.Location = new System.Drawing.Point(238, 3);
             this.abortCheck.Margin = new System.Windows.Forms.Padding(2);
             this.abortCheck.Name = "abortCheck";
             this.abortCheck.Size = new System.Drawing.Size(80, 17);
@@ -272,7 +284,7 @@
             this.targetBox.Location = new System.Drawing.Point(579, 0);
             this.targetBox.Margin = new System.Windows.Forms.Padding(2);
             this.targetBox.Name = "targetBox";
-            this.targetBox.Size = new System.Drawing.Size(189, 20);
+            this.targetBox.Size = new System.Drawing.Size(274, 20);
             this.targetBox.TabIndex = 19;
             this.targetBox.Text = "Adolf_Hitler";
             // 
@@ -304,16 +316,6 @@
             this.backgroundWorker1.WorkerSupportsCancellation = true;
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             // 
-            // dateCheck
-            // 
-            this.dateCheck.AutoSize = true;
-            this.dateCheck.Location = new System.Drawing.Point(338, 4);
-            this.dateCheck.Name = "dateCheck";
-            this.dateCheck.Size = new System.Drawing.Size(85, 17);
-            this.dateCheck.TabIndex = 25;
-            this.dateCheck.Text = "ignore Years";
-            this.dateCheck.UseVisualStyleBackColor = true;
-            // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -336,65 +338,10 @@
             this.panel1.Controls.Add(this.pathLbl);
             this.panel1.Controls.Add(this.path2Lbl);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Location = new System.Drawing.Point(620, 44);
+            this.panel1.Location = new System.Drawing.Point(705, 44);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(161, 533);
+            this.panel1.Size = new System.Drawing.Size(161, 493);
             this.panel1.TabIndex = 26;
-            // 
-            // delayLbl
-            // 
-            this.delayLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.delayLbl.AutoSize = true;
-            this.delayLbl.Location = new System.Drawing.Point(8, 510);
-            this.delayLbl.Name = "delayLbl";
-            this.delayLbl.Size = new System.Drawing.Size(92, 13);
-            this.delayLbl.TabIndex = 27;
-            this.delayLbl.Text = "Refresh Rate (ms)";
-            // 
-            // delayBox
-            // 
-            this.delayBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.delayBox.Increment = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-            this.delayBox.Location = new System.Drawing.Point(107, 508);
-            this.delayBox.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.delayBox.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.delayBox.Name = "delayBox";
-            this.delayBox.Size = new System.Drawing.Size(51, 20);
-            this.delayBox.TabIndex = 26;
-            this.delayBox.Value = new decimal(new int[] {
-            200,
-            0,
-            0,
-            0});
-            this.delayBox.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
-            // 
-            // panel2
-            // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.Controls.Add(this.urlBox);
-            this.panel2.Controls.Add(this.countryBox);
-            this.panel2.Controls.Add(this.targetBox);
-            this.panel2.Controls.Add(this.depthBox);
-            this.panel2.Controls.Add(this.dateCheck);
-            this.panel2.Controls.Add(this.depthLbl);
-            this.panel2.Controls.Add(this.abortCheck);
-            this.panel2.Location = new System.Drawing.Point(12, 12);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(769, 26);
-            this.panel2.TabIndex = 27;
             // 
             // path4Lbl
             // 
@@ -416,10 +363,70 @@
             this.label9.TabIndex = 28;
             this.label9.Text = "Sub Sub Branch";
             // 
+            // delayLbl
+            // 
+            this.delayLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.delayLbl.AutoSize = true;
+            this.delayLbl.Location = new System.Drawing.Point(8, 470);
+            this.delayLbl.Name = "delayLbl";
+            this.delayLbl.Size = new System.Drawing.Size(96, 13);
+            this.delayLbl.TabIndex = 27;
+            this.delayLbl.Text = "Refresh Delay (ms)";
+            // 
+            // delayBox
+            // 
+            this.delayBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.delayBox.Increment = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.delayBox.Location = new System.Drawing.Point(107, 468);
+            this.delayBox.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.delayBox.Name = "delayBox";
+            this.delayBox.Size = new System.Drawing.Size(51, 20);
+            this.delayBox.TabIndex = 26;
+            this.delayBox.Value = new decimal(new int[] {
+            150,
+            0,
+            0,
+            0});
+            this.delayBox.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.blackListButton);
+            this.panel2.Controls.Add(this.urlBox);
+            this.panel2.Controls.Add(this.countryBox);
+            this.panel2.Controls.Add(this.targetBox);
+            this.panel2.Controls.Add(this.depthBox);
+            this.panel2.Controls.Add(this.depthLbl);
+            this.panel2.Controls.Add(this.abortCheck);
+            this.panel2.Location = new System.Drawing.Point(12, 12);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(854, 26);
+            this.panel2.TabIndex = 27;
+            // 
+            // blackListButton
+            // 
+            this.blackListButton.Location = new System.Drawing.Point(367, 0);
+            this.blackListButton.Name = "blackListButton";
+            this.blackListButton.Size = new System.Drawing.Size(75, 23);
+            this.blackListButton.TabIndex = 23;
+            this.blackListButton.Text = "Blacklist...";
+            this.blackListButton.UseVisualStyleBackColor = true;
+            this.blackListButton.Click += new System.EventHandler(this.button2_Click);
+            // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(700, 588);
+            this.button1.Location = new System.Drawing.Point(785, 548);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(94, 23);
             this.button1.TabIndex = 28;
@@ -427,11 +434,108 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.testToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(96, 26);
+            // 
+            // testToolStripMenuItem
+            // 
+            this.testToolStripMenuItem.Name = "testToolStripMenuItem";
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(95, 22);
+            this.testToolStripMenuItem.Text = "Test";
+            // 
+            // msgButton
+            // 
+            this.msgButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.msgButton.Location = new System.Drawing.Point(629, 548);
+            this.msgButton.Name = "msgButton";
+            this.msgButton.Size = new System.Drawing.Size(71, 23);
+            this.msgButton.TabIndex = 29;
+            this.msgButton.Text = "Messages...";
+            this.msgButton.UseVisualStyleBackColor = true;
+            this.msgButton.Click += new System.EventHandler(this.msgButton_Click);
+            // 
+            // blacklistContext
+            // 
+            this.blacklistContext.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.yearsToolStrip,
+            this.customBlacklistToolStripMenuItem});
+            this.blacklistContext.Name = "blacklistContext";
+            this.blacklistContext.Size = new System.Drawing.Size(172, 48);
+            // 
+            // yearsToolStrip
+            // 
+            this.yearsToolStrip.AutoToolTip = true;
+            this.yearsToolStrip.CheckOnClick = true;
+            this.yearsToolStrip.Name = "yearsToolStrip";
+            this.yearsToolStrip.Size = new System.Drawing.Size(171, 22);
+            this.yearsToolStrip.Text = "Years";
+            this.yearsToolStrip.ToolTipText = "Add pages of years to the blacklist";
+            // 
+            // customBlacklistToolStripMenuItem
+            // 
+            this.customBlacklistToolStripMenuItem.Name = "customBlacklistToolStripMenuItem";
+            this.customBlacklistToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.customBlacklistToolStripMenuItem.Text = "Custom Blacklist...";
+            this.customBlacklistToolStripMenuItem.Click += new System.EventHandler(this.customBlacklistToolStripMenuItem_Click);
+            // 
+            // msgContext
+            // 
+            this.msgContext.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.httpErrorToolStripMenuItem,
+            this.ruleViolationlToolStripMenuItem,
+            this.rekursionStatusToolStripMenuItem,
+            this.abortReasonsToolStripMenuItem});
+            this.msgContext.Name = "msgContext";
+            this.msgContext.Size = new System.Drawing.Size(193, 92);
+            // 
+            // httpErrorToolStripMenuItem
+            // 
+            this.httpErrorToolStripMenuItem.CheckOnClick = true;
+            this.httpErrorToolStripMenuItem.Name = "httpErrorToolStripMenuItem";
+            this.httpErrorToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.httpErrorToolStripMenuItem.Text = "show Http Errors";
+            this.httpErrorToolStripMenuItem.Click += new System.EventHandler(this.httpErrorToolStripMenuItem_Click);
+            // 
+            // ruleViolationlToolStripMenuItem
+            // 
+            this.ruleViolationlToolStripMenuItem.AutoToolTip = true;
+            this.ruleViolationlToolStripMenuItem.CheckOnClick = true;
+            this.ruleViolationlToolStripMenuItem.Name = "ruleViolationlToolStripMenuItem";
+            this.ruleViolationlToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.ruleViolationlToolStripMenuItem.Text = "show Rule Violations";
+            this.ruleViolationlToolStripMenuItem.ToolTipText = "heavy impact on performance";
+            this.ruleViolationlToolStripMenuItem.Click += new System.EventHandler(this.ruleViolationlToolStripMenuItem_Click);
+            // 
+            // rekursionStatusToolStripMenuItem
+            // 
+            this.rekursionStatusToolStripMenuItem.AutoToolTip = true;
+            this.rekursionStatusToolStripMenuItem.CheckOnClick = true;
+            this.rekursionStatusToolStripMenuItem.Name = "rekursionStatusToolStripMenuItem";
+            this.rekursionStatusToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.rekursionStatusToolStripMenuItem.Text = "show Rekursion Status";
+            this.rekursionStatusToolStripMenuItem.ToolTipText = "heavy impact on performance";
+            this.rekursionStatusToolStripMenuItem.Click += new System.EventHandler(this.rekursionStatusToolStripMenuItem_Click);
+            // 
+            // abortReasonsToolStripMenuItem
+            // 
+            this.abortReasonsToolStripMenuItem.AutoToolTip = true;
+            this.abortReasonsToolStripMenuItem.CheckOnClick = true;
+            this.abortReasonsToolStripMenuItem.Name = "abortReasonsToolStripMenuItem";
+            this.abortReasonsToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.abortReasonsToolStripMenuItem.Text = "show Abort Reasons";
+            this.abortReasonsToolStripMenuItem.ToolTipText = "heavy impact on performance";
+            this.abortReasonsToolStripMenuItem.Click += new System.EventHandler(this.abortReasonsToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(809, 623);
+            this.ClientSize = new System.Drawing.Size(894, 583);
+            this.Controls.Add(this.msgButton);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -442,13 +546,16 @@
             this.MinimumSize = new System.Drawing.Size(691, 520);
             this.Name = "Form1";
             this.Text = "The Wiki-Game";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.depthBox)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.delayBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
+            this.blacklistContext.ResumeLayout(false);
+            this.msgContext.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -478,15 +585,25 @@
         private System.Windows.Forms.Label depthLbl;
         private System.Windows.Forms.NumericUpDown depthBox;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.Windows.Forms.CheckBox dateCheck;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label delayLbl;
         private System.Windows.Forms.NumericUpDown delayBox;
         private System.Windows.Forms.Label path4Lbl;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
+        private System.Windows.Forms.Button blackListButton;
+        private System.Windows.Forms.Button msgButton;
+        private System.Windows.Forms.ContextMenuStrip blacklistContext;
+        private System.Windows.Forms.ToolStripMenuItem yearsToolStrip;
+        private System.Windows.Forms.ToolStripMenuItem customBlacklistToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip msgContext;
+        private System.Windows.Forms.ToolStripMenuItem httpErrorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ruleViolationlToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem abortReasonsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rekursionStatusToolStripMenuItem;
     }
 }
 
