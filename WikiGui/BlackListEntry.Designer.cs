@@ -34,6 +34,7 @@
             this.addButton = new System.Windows.Forms.Button();
             this.rmButton = new System.Windows.Forms.Button();
             this.listBox = new System.Windows.Forms.ListBox();
+            this.donateBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // closeBtn
@@ -89,11 +90,24 @@
             this.listBox.Sorted = true;
             this.listBox.TabIndex = 5;
             // 
+            // donateBtn
+            // 
+            this.donateBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.donateBtn.BackgroundImage = global::WikiGui.Properties.Resources.paypal;
+            this.donateBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.donateBtn.Location = new System.Drawing.Point(12, 538);
+            this.donateBtn.Name = "donateBtn";
+            this.donateBtn.Size = new System.Drawing.Size(35, 35);
+            this.donateBtn.TabIndex = 6;
+            this.donateBtn.UseVisualStyleBackColor = true;
+            this.donateBtn.Click += new System.EventHandler(this.donateBtn_Click);
+            // 
             // Blacklist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(913, 579);
+            this.Controls.Add(this.donateBtn);
             this.Controls.Add(this.listBox);
             this.Controls.Add(this.rmButton);
             this.Controls.Add(this.addButton);
@@ -114,5 +128,6 @@
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Button rmButton;
         private System.Windows.Forms.ListBox listBox;
+        private System.Windows.Forms.Button donateBtn;
     }
 }

@@ -22,5 +22,53 @@ namespace WikiGui.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int posX {
+            get {
+                return ((int)(this["posX"]));
+            }
+            set {
+                this["posX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int posY {
+            get {
+                return ((int)(this["posY"]));
+            }
+            set {
+                this["posY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public int maxDepth {
+            get {
+                return ((int)(this["maxDepth"]));
+            }
+            set {
+                this["maxDepth"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Nacktschnecke")]
+        public string startUrl {
+            get {
+                return ((string)(this["startUrl"]));
+            }
+            set {
+                this["startUrl"] = value;
+            }
+        }
     }
 }

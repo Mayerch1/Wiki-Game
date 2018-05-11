@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -21,9 +22,9 @@ namespace WikiGui
 
         private void loadBlackListView()
         {
-            for (int i = 0; i < Form1.blackList.Count; i++)
+            for (int i = 0; i < Form1._blackList.Count; i++)
             {
-                listBox.Items.Add(Form1.blackList[i]);
+                listBox.Items.Add(Form1._blackList[i]);
             }
         }
 
@@ -37,10 +38,10 @@ namespace WikiGui
             var newEntry = entryBox.Text;
             entryBox.Text = "";
 
-            if (!Form1.blackList.Contains(newEntry) && newEntry != "")
+            if (!Form1._blackList.Contains(newEntry) && newEntry != "")
             {
                 listBox.Items.Add(newEntry);
-                Form1.blackList.Add(newEntry);
+                Form1._blackList.Add(newEntry);
             }
         }
 
@@ -56,7 +57,7 @@ namespace WikiGui
                 return;
             }
 
-            Form1.blackList.Remove(deleteEntry);
+            Form1._blackList.Remove(deleteEntry);
             listBox.Items.Clear();
             loadBlackListView();
         }
@@ -65,6 +66,13 @@ namespace WikiGui
         {
             if (e.KeyCode == Keys.Return)
                 addButton_Click(sender, e);
+        }
+
+        
+
+        private void donateBtn_Click(object sender, EventArgs e)
+        {
+            Process.Start(new ProcessStartInfo("https://www.paypal.me/CJMayer/3,99"));
         }
     }
 }

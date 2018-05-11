@@ -37,10 +37,10 @@
             this.logBox = new System.Windows.Forms.RichTextBox();
             this.countryBox = new System.Windows.Forms.TextBox();
             this.crawlLbl = new System.Windows.Forms.Label();
-            this.rekLimLbl = new System.Windows.Forms.Label();
+            this.apiReqLbl = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.loadErrLbl = new System.Windows.Forms.Label();
+            this.timeOutLbl = new System.Windows.Forms.Label();
             this.discardLbl = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.pathLbl = new System.Windows.Forms.Label();
@@ -48,43 +48,38 @@
             this.path2Lbl = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.path3Lbl = new System.Windows.Forms.Label();
-            this.abortCheck = new System.Windows.Forms.CheckBox();
             this.targetBox = new System.Windows.Forms.TextBox();
             this.depthLbl = new System.Windows.Forms.Label();
             this.depthBox = new System.Windows.Forms.NumericUpDown();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.path4Lbl = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.timeLbl = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.delayLbl = new System.Windows.Forms.Label();
             this.delayBox = new System.Windows.Forms.NumericUpDown();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.apiCheck = new System.Windows.Forms.CheckBox();
+            this.randBtn = new System.Windows.Forms.Button();
             this.blackListButton = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.msgButton = new System.Windows.Forms.Button();
+            this.stopBtn = new System.Windows.Forms.Button();
             this.blacklistContext = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.yearsToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.customBlacklistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.msgContext = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.httpErrorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ruleViolationlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rekursionStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.abortReasonsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.numericThreads = new System.Windows.Forms.NumericUpDown();
+            this.threadLbl = new System.Windows.Forms.Label();
+            this.resetBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.depthBox)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.delayBox)).BeginInit();
             this.panel2.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
             this.blacklistContext.SuspendLayout();
-            this.msgContext.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericThreads)).BeginInit();
             this.SuspendLayout();
             // 
             // startBtn
             // 
             this.startBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.startBtn.Location = new System.Drawing.Point(7, 551);
+            this.startBtn.Location = new System.Drawing.Point(7, 600);
             this.startBtn.Margin = new System.Windows.Forms.Padding(2);
             this.startBtn.Name = "startBtn";
             this.startBtn.Size = new System.Drawing.Size(61, 21);
@@ -118,9 +113,9 @@
             this.label2.Location = new System.Drawing.Point(15, 45);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(85, 13);
+            this.label2.Size = new System.Drawing.Size(70, 13);
             this.label2.TabIndex = 3;
-            this.label2.Text = "RekLim reached";
+            this.label2.Text = "Api Requests";
             // 
             // logBox
             // 
@@ -131,19 +126,18 @@
             this.logBox.Margin = new System.Windows.Forms.Padding(2);
             this.logBox.Name = "logBox";
             this.logBox.ReadOnly = true;
-            this.logBox.Size = new System.Drawing.Size(694, 494);
+            this.logBox.Size = new System.Drawing.Size(773, 543);
             this.logBox.TabIndex = 4;
             this.logBox.Text = "";
             // 
             // countryBox
             // 
-            this.countryBox.Location = new System.Drawing.Point(178, 2);
+            this.countryBox.Location = new System.Drawing.Point(204, 2);
             this.countryBox.Margin = new System.Windows.Forms.Padding(2);
             this.countryBox.Name = "countryBox";
             this.countryBox.Size = new System.Drawing.Size(56, 20);
             this.countryBox.TabIndex = 5;
             this.countryBox.Text = "de";
-            this.countryBox.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // crawlLbl
             // 
@@ -155,25 +149,25 @@
             this.crawlLbl.TabIndex = 6;
             this.crawlLbl.Text = "0";
             // 
-            // rekLimLbl
+            // apiReqLbl
             // 
-            this.rekLimLbl.AutoSize = true;
-            this.rekLimLbl.Location = new System.Drawing.Point(21, 58);
-            this.rekLimLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.rekLimLbl.Name = "rekLimLbl";
-            this.rekLimLbl.Size = new System.Drawing.Size(13, 13);
-            this.rekLimLbl.TabIndex = 7;
-            this.rekLimLbl.Text = "0";
+            this.apiReqLbl.AutoSize = true;
+            this.apiReqLbl.Location = new System.Drawing.Point(21, 58);
+            this.apiReqLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.apiReqLbl.Name = "apiReqLbl";
+            this.apiReqLbl.Size = new System.Drawing.Size(13, 13);
+            this.apiReqLbl.TabIndex = 7;
+            this.apiReqLbl.Text = "0";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(21, 92);
+            this.label5.Location = new System.Drawing.Point(15, 92);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(52, 13);
+            this.label5.Size = new System.Drawing.Size(68, 13);
             this.label5.TabIndex = 8;
-            this.label5.Text = "Http Error";
+            this.label5.Text = "Api-Timeouts";
             // 
             // label6
             // 
@@ -185,15 +179,15 @@
             this.label6.TabIndex = 9;
             this.label6.Text = "Rule violation";
             // 
-            // loadErrLbl
+            // timeOutLbl
             // 
-            this.loadErrLbl.AutoSize = true;
-            this.loadErrLbl.Location = new System.Drawing.Point(22, 105);
-            this.loadErrLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.loadErrLbl.Name = "loadErrLbl";
-            this.loadErrLbl.Size = new System.Drawing.Size(13, 13);
-            this.loadErrLbl.TabIndex = 10;
-            this.loadErrLbl.Text = "0";
+            this.timeOutLbl.AutoSize = true;
+            this.timeOutLbl.Location = new System.Drawing.Point(22, 105);
+            this.timeOutLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.timeOutLbl.Name = "timeOutLbl";
+            this.timeOutLbl.Size = new System.Drawing.Size(13, 13);
+            this.timeOutLbl.TabIndex = 10;
+            this.timeOutLbl.Text = "0";
             // 
             // discardLbl
             // 
@@ -214,7 +208,6 @@
             this.label3.Size = new System.Drawing.Size(67, 13);
             this.label3.TabIndex = 12;
             this.label3.Text = "Current Root";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // pathLbl
             // 
@@ -266,32 +259,21 @@
             this.path3Lbl.TabIndex = 17;
             this.path3Lbl.Text = "//";
             // 
-            // abortCheck
-            // 
-            this.abortCheck.AutoSize = true;
-            this.abortCheck.Location = new System.Drawing.Point(238, 3);
-            this.abortCheck.Margin = new System.Windows.Forms.Padding(2);
-            this.abortCheck.Name = "abortCheck";
-            this.abortCheck.Size = new System.Drawing.Size(80, 17);
-            this.abortCheck.TabIndex = 18;
-            this.abortCheck.Text = "only first Hit";
-            this.abortCheck.UseVisualStyleBackColor = true;
-            // 
             // targetBox
             // 
             this.targetBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.targetBox.Location = new System.Drawing.Point(579, 0);
+            this.targetBox.Location = new System.Drawing.Point(615, 0);
             this.targetBox.Margin = new System.Windows.Forms.Padding(2);
             this.targetBox.Name = "targetBox";
-            this.targetBox.Size = new System.Drawing.Size(274, 20);
+            this.targetBox.Size = new System.Drawing.Size(317, 20);
             this.targetBox.TabIndex = 19;
             this.targetBox.Text = "Adolf_Hitler";
             // 
             // depthLbl
             // 
             this.depthLbl.AutoSize = true;
-            this.depthLbl.Location = new System.Drawing.Point(447, 5);
+            this.depthLbl.Location = new System.Drawing.Point(482, 4);
             this.depthLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.depthLbl.Name = "depthLbl";
             this.depthLbl.Size = new System.Drawing.Size(59, 13);
@@ -300,7 +282,7 @@
             // 
             // depthBox
             // 
-            this.depthBox.Location = new System.Drawing.Point(510, 0);
+            this.depthBox.Location = new System.Drawing.Point(545, 0);
             this.depthBox.Margin = new System.Windows.Forms.Padding(2);
             this.depthBox.Name = "depthBox";
             this.depthBox.Size = new System.Drawing.Size(65, 20);
@@ -311,25 +293,20 @@
             0,
             0});
             // 
-            // backgroundWorker1
-            // 
-            this.backgroundWorker1.WorkerSupportsCancellation = true;
-            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
-            // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.path4Lbl);
-            this.panel1.Controls.Add(this.label9);
+            this.panel1.Controls.Add(this.timeLbl);
+            this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.delayLbl);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.delayBox);
             this.panel1.Controls.Add(this.crawlLbl);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.rekLimLbl);
+            this.panel1.Controls.Add(this.apiReqLbl);
             this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.loadErrLbl);
+            this.panel1.Controls.Add(this.timeOutLbl);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.discardLbl);
             this.panel1.Controls.Add(this.path3Lbl);
@@ -338,36 +315,36 @@
             this.panel1.Controls.Add(this.pathLbl);
             this.panel1.Controls.Add(this.path2Lbl);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Location = new System.Drawing.Point(705, 44);
+            this.panel1.Location = new System.Drawing.Point(784, 44);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(161, 493);
+            this.panel1.Size = new System.Drawing.Size(161, 542);
             this.panel1.TabIndex = 26;
             // 
-            // path4Lbl
+            // timeLbl
             // 
-            this.path4Lbl.AutoSize = true;
-            this.path4Lbl.Location = new System.Drawing.Point(22, 349);
-            this.path4Lbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.path4Lbl.Name = "path4Lbl";
-            this.path4Lbl.Size = new System.Drawing.Size(17, 13);
-            this.path4Lbl.TabIndex = 29;
-            this.path4Lbl.Text = "//";
+            this.timeLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.timeLbl.AutoSize = true;
+            this.timeLbl.Location = new System.Drawing.Point(22, 483);
+            this.timeLbl.Name = "timeLbl";
+            this.timeLbl.Size = new System.Drawing.Size(13, 13);
+            this.timeLbl.TabIndex = 31;
+            this.timeLbl.Text = "0";
             // 
-            // label9
+            // label8
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(19, 333);
-            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(85, 13);
-            this.label9.TabIndex = 28;
-            this.label9.Text = "Sub Sub Branch";
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(17, 461);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(90, 13);
+            this.label8.TabIndex = 30;
+            this.label8.Text = "Elapsed Seconds";
             // 
             // delayLbl
             // 
             this.delayLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.delayLbl.AutoSize = true;
-            this.delayLbl.Location = new System.Drawing.Point(8, 470);
+            this.delayLbl.Location = new System.Drawing.Point(8, 519);
             this.delayLbl.Name = "delayLbl";
             this.delayLbl.Size = new System.Drawing.Size(96, 13);
             this.delayLbl.TabIndex = 27;
@@ -381,7 +358,7 @@
             0,
             0,
             0});
-            this.delayBox.Location = new System.Drawing.Point(107, 468);
+            this.delayBox.Location = new System.Drawing.Point(107, 517);
             this.delayBox.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -401,21 +378,43 @@
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.apiCheck);
+            this.panel2.Controls.Add(this.randBtn);
             this.panel2.Controls.Add(this.blackListButton);
             this.panel2.Controls.Add(this.urlBox);
             this.panel2.Controls.Add(this.countryBox);
             this.panel2.Controls.Add(this.targetBox);
             this.panel2.Controls.Add(this.depthBox);
             this.panel2.Controls.Add(this.depthLbl);
-            this.panel2.Controls.Add(this.abortCheck);
             this.panel2.Location = new System.Drawing.Point(12, 12);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(854, 26);
+            this.panel2.Size = new System.Drawing.Size(933, 26);
             this.panel2.TabIndex = 27;
+            // 
+            // apiCheck
+            // 
+            this.apiCheck.AutoSize = true;
+            this.apiCheck.Location = new System.Drawing.Point(265, 4);
+            this.apiCheck.Name = "apiCheck";
+            this.apiCheck.Size = new System.Drawing.Size(79, 17);
+            this.apiCheck.TabIndex = 24;
+            this.apiCheck.Text = "disable API";
+            this.apiCheck.UseVisualStyleBackColor = true;
+            // 
+            // randBtn
+            // 
+            this.randBtn.BackgroundImage = global::WikiGui.Properties.Resources.shuffle;
+            this.randBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.randBtn.Location = new System.Drawing.Point(179, 2);
+            this.randBtn.Name = "randBtn";
+            this.randBtn.Size = new System.Drawing.Size(20, 20);
+            this.randBtn.TabIndex = 32;
+            this.randBtn.UseVisualStyleBackColor = true;
+            this.randBtn.Click += new System.EventHandler(this.randBtn_Click);
             // 
             // blackListButton
             // 
-            this.blackListButton.Location = new System.Drawing.Point(367, 0);
+            this.blackListButton.Location = new System.Drawing.Point(402, 0);
             this.blackListButton.Name = "blackListButton";
             this.blackListButton.Size = new System.Drawing.Size(75, 23);
             this.blackListButton.TabIndex = 23;
@@ -423,43 +422,21 @@
             this.blackListButton.UseVisualStyleBackColor = true;
             this.blackListButton.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button1
+            // stopBtn
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(785, 548);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 23);
-            this.button1.TabIndex = 28;
-            this.button1.Text = "Abort and Reset";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.testToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(96, 26);
-            // 
-            // testToolStripMenuItem
-            // 
-            this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(95, 22);
-            this.testToolStripMenuItem.Text = "Test";
-            // 
-            // msgButton
-            // 
-            this.msgButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.msgButton.Location = new System.Drawing.Point(629, 548);
-            this.msgButton.Name = "msgButton";
-            this.msgButton.Size = new System.Drawing.Size(71, 23);
-            this.msgButton.TabIndex = 29;
-            this.msgButton.Text = "Messages...";
-            this.msgButton.UseVisualStyleBackColor = true;
-            this.msgButton.Click += new System.EventHandler(this.msgButton_Click);
+            this.stopBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.stopBtn.Enabled = false;
+            this.stopBtn.Location = new System.Drawing.Point(816, 596);
+            this.stopBtn.Name = "stopBtn";
+            this.stopBtn.Size = new System.Drawing.Size(61, 21);
+            this.stopBtn.TabIndex = 28;
+            this.stopBtn.Text = "Stop";
+            this.stopBtn.UseVisualStyleBackColor = true;
+            this.stopBtn.Click += new System.EventHandler(this.button1_Click);
             // 
             // blacklistContext
             // 
+            this.blacklistContext.ImageScalingSize = new System.Drawing.Size(28, 28);
             this.blacklistContext.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.yearsToolStrip,
             this.customBlacklistToolStripMenuItem});
@@ -482,68 +459,72 @@
             this.customBlacklistToolStripMenuItem.Text = "Custom Blacklist...";
             this.customBlacklistToolStripMenuItem.Click += new System.EventHandler(this.customBlacklistToolStripMenuItem_Click);
             // 
-            // msgContext
+            // timer
             // 
-            this.msgContext.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.httpErrorToolStripMenuItem,
-            this.ruleViolationlToolStripMenuItem,
-            this.rekursionStatusToolStripMenuItem,
-            this.abortReasonsToolStripMenuItem});
-            this.msgContext.Name = "msgContext";
-            this.msgContext.Size = new System.Drawing.Size(193, 92);
+            this.timer.Interval = 500;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
-            // httpErrorToolStripMenuItem
+            // numericThreads
             // 
-            this.httpErrorToolStripMenuItem.CheckOnClick = true;
-            this.httpErrorToolStripMenuItem.Name = "httpErrorToolStripMenuItem";
-            this.httpErrorToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.httpErrorToolStripMenuItem.Text = "show Http Errors";
-            this.httpErrorToolStripMenuItem.Click += new System.EventHandler(this.httpErrorToolStripMenuItem_Click);
+            this.numericThreads.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.numericThreads.Location = new System.Drawing.Point(732, 597);
+            this.numericThreads.Margin = new System.Windows.Forms.Padding(2);
+            this.numericThreads.Maximum = new decimal(new int[] {
+            32768,
+            0,
+            0,
+            0});
+            this.numericThreads.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericThreads.Name = "numericThreads";
+            this.numericThreads.Size = new System.Drawing.Size(47, 20);
+            this.numericThreads.TabIndex = 30;
+            this.numericThreads.Value = new decimal(new int[] {
+            6,
+            0,
+            0,
+            0});
             // 
-            // ruleViolationlToolStripMenuItem
+            // threadLbl
             // 
-            this.ruleViolationlToolStripMenuItem.AutoToolTip = true;
-            this.ruleViolationlToolStripMenuItem.CheckOnClick = true;
-            this.ruleViolationlToolStripMenuItem.Name = "ruleViolationlToolStripMenuItem";
-            this.ruleViolationlToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.ruleViolationlToolStripMenuItem.Text = "show Rule Violations";
-            this.ruleViolationlToolStripMenuItem.ToolTipText = "heavy impact on performance";
-            this.ruleViolationlToolStripMenuItem.Click += new System.EventHandler(this.ruleViolationlToolStripMenuItem_Click);
+            this.threadLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.threadLbl.AutoSize = true;
+            this.threadLbl.Location = new System.Drawing.Point(633, 600);
+            this.threadLbl.Name = "threadLbl";
+            this.threadLbl.Size = new System.Drawing.Size(94, 13);
+            this.threadLbl.TabIndex = 31;
+            this.threadLbl.Text = "Number of threads";
             // 
-            // rekursionStatusToolStripMenuItem
+            // resetBtn
             // 
-            this.rekursionStatusToolStripMenuItem.AutoToolTip = true;
-            this.rekursionStatusToolStripMenuItem.CheckOnClick = true;
-            this.rekursionStatusToolStripMenuItem.Name = "rekursionStatusToolStripMenuItem";
-            this.rekursionStatusToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.rekursionStatusToolStripMenuItem.Text = "show Rekursion Status";
-            this.rekursionStatusToolStripMenuItem.ToolTipText = "heavy impact on performance";
-            this.rekursionStatusToolStripMenuItem.Click += new System.EventHandler(this.rekursionStatusToolStripMenuItem_Click);
-            // 
-            // abortReasonsToolStripMenuItem
-            // 
-            this.abortReasonsToolStripMenuItem.AutoToolTip = true;
-            this.abortReasonsToolStripMenuItem.CheckOnClick = true;
-            this.abortReasonsToolStripMenuItem.Name = "abortReasonsToolStripMenuItem";
-            this.abortReasonsToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.abortReasonsToolStripMenuItem.Text = "show Abort Reasons";
-            this.abortReasonsToolStripMenuItem.ToolTipText = "heavy impact on performance";
-            this.abortReasonsToolStripMenuItem.Click += new System.EventHandler(this.abortReasonsToolStripMenuItem_Click);
+            this.resetBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.resetBtn.Location = new System.Drawing.Point(883, 596);
+            this.resetBtn.Name = "resetBtn";
+            this.resetBtn.Size = new System.Drawing.Size(61, 21);
+            this.resetBtn.TabIndex = 32;
+            this.resetBtn.Text = "Reset";
+            this.resetBtn.UseVisualStyleBackColor = true;
+            this.resetBtn.Click += new System.EventHandler(this.resumeBtn_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(894, 583);
-            this.Controls.Add(this.msgButton);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(973, 624);
+            this.Controls.Add(this.resetBtn);
+            this.Controls.Add(this.threadLbl);
+            this.Controls.Add(this.numericThreads);
+            this.Controls.Add(this.stopBtn);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.logBox);
             this.Controls.Add(this.startBtn);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.MinimumSize = new System.Drawing.Size(691, 520);
+            this.MinimumSize = new System.Drawing.Size(733, 523);
             this.Name = "Form1";
             this.Text = "The Wiki-Game";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
@@ -553,10 +534,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.delayBox)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.blacklistContext.ResumeLayout(false);
-            this.msgContext.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numericThreads)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -569,10 +550,10 @@
         private System.Windows.Forms.RichTextBox logBox;
         private System.Windows.Forms.TextBox countryBox;
         private System.Windows.Forms.Label crawlLbl;
-        private System.Windows.Forms.Label rekLimLbl;
+        private System.Windows.Forms.Label apiReqLbl;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label loadErrLbl;
+        private System.Windows.Forms.Label timeOutLbl;
         private System.Windows.Forms.Label discardLbl;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label pathLbl;
@@ -580,30 +561,26 @@
         private System.Windows.Forms.Label path2Lbl;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label path3Lbl;
-        private System.Windows.Forms.CheckBox abortCheck;
         private System.Windows.Forms.TextBox targetBox;
         private System.Windows.Forms.Label depthLbl;
         private System.Windows.Forms.NumericUpDown depthBox;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label delayLbl;
         private System.Windows.Forms.NumericUpDown delayBox;
-        private System.Windows.Forms.Label path4Lbl;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
+        private System.Windows.Forms.Button stopBtn;
         private System.Windows.Forms.Button blackListButton;
-        private System.Windows.Forms.Button msgButton;
         private System.Windows.Forms.ContextMenuStrip blacklistContext;
         private System.Windows.Forms.ToolStripMenuItem yearsToolStrip;
         private System.Windows.Forms.ToolStripMenuItem customBlacklistToolStripMenuItem;
-        private System.Windows.Forms.ContextMenuStrip msgContext;
-        private System.Windows.Forms.ToolStripMenuItem httpErrorToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ruleViolationlToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem abortReasonsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem rekursionStatusToolStripMenuItem;
+        private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.Label timeLbl;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.NumericUpDown numericThreads;
+        private System.Windows.Forms.Label threadLbl;
+        private System.Windows.Forms.CheckBox apiCheck;
+        private System.Windows.Forms.Button randBtn;
+        private System.Windows.Forms.Button resetBtn;
     }
 }
 
