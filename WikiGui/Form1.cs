@@ -73,7 +73,7 @@ namespace WikiGui
         /*-------------------------------------------------------------------------------*/
 
         //User-Agent, for api-request
-        private const string _userAgent = "This bot plays the /wiki/Wikipedia:Wiki_Game. It is open-source distributed through \"https://github.com/Mayerch1/Wiki-Game\", there's no control over who executes this request";
+        private const string _userAgent = "This bot plays the /wiki/Wikipedia:Wiki_Game. It is open-source distributed through \"https://github.com/Mayerch1/Wiki-Game\" (ver. 1.2.0), so there's no control over who executes this request";
 
         //Parameter, hard coded
         private const string _constUrl = ".wikipedia.org/wiki/";
@@ -93,16 +93,13 @@ namespace WikiGui
 
         /*-------------------------------------------------------------------------------*/
 
-        //TODO: implement
-        private const bool _ignoreNations = false;
-
         #endregion Vars and Consts
 
         /*-------------------------------------------------------------------------------*/
 
         #region Recursive Elements
 
-        public int RekuSearch(string html, int depth, int maxDepth, ref WebClient client, ref string lastBranch)
+        private int RekuSearch(string html, int depth, int maxDepth, ref WebClient client, ref string lastBranch)
         {
             using (client)
             {
@@ -198,7 +195,7 @@ namespace WikiGui
         //return 0 for hit on target
         //return 2 for hit on shortest target
         //return 3 for no hit
-        public int applyFilterToSubstr(string nHtml, int depth)
+        private int applyFilterToSubstr(string nHtml, int depth)
         {
             //illegal pages
 
@@ -258,7 +255,7 @@ namespace WikiGui
             return 3;
         }
 
-        public bool apiRequest(ref WebClient client, string html, int depth, ref string lastBranch)
+        private bool apiRequest(ref WebClient client, string html, int depth, ref string lastBranch)
         {
             bool isHit = false;
             ConcurrentBag<HtmlList> apiList = new ConcurrentBag<HtmlList>();
@@ -295,43 +292,54 @@ namespace WikiGui
                 apiRequest = apiRequest.Remove(apiRequest.Length - 1);
                 apiRequest += _apiMidUrl + _targetPage;
 
-                string apiRet;
-                try
+                string apiRet = "";
+                int retry = 0;
+                bool isBreak = false;
+                //break when succesfull, unhandled fail, or 3 Timeouts
+                while (true)
                 {
-                    apiRet = client.DownloadString(apiRequest);
-                }
-                catch (WebException ex)
-                {
-                    var err = ex.Response as System.Net.HttpWebResponse;
-                    if (err.StatusCode == (System.Net.HttpStatusCode)429)
+                    try
                     {
-                        lock (_logLock)
-                            logBox.AppendText("\nTo many Api request -> Timeout, Retry");
-                        _timeOuts++;
-                        Thread.Sleep(5000);
-                        try
+                        apiRet = client.DownloadString(apiRequest);
+                        break;
+                    }
+                    catch (WebException ex)
+                    {
+                        var err = ex.Response as System.Net.HttpWebResponse;
+                        if (err.StatusCode == (System.Net.HttpStatusCode)429)
                         {
-                            apiRet = client.DownloadString(apiRequest);
-                        }
-                        catch
-                        {
-                            //the second error must be the same, as the first one
-                            lock (_logLock)
-                                logBox.AppendText("\nTo many Api request -> Timeout, Skip");
                             _timeOuts++;
-                            _timeOutSkips++;
-                            Thread.Sleep(5000);
+                            //if timeout, retry 3 times
+                            if (retry < 4)
+                            {
+                                lock (_logLock)
+                                    logBox.AppendText("\nTo many Api request -> Timeout, Retry");
+                                Thread.Sleep(5000);
+                            }
+                            else
+                            {
+                                lock (_logLock)
+                                    logBox.AppendText("\nTo many Api request -> Timeout, Skip");
+                                _timeOutSkips++;
+                                Thread.Sleep(5000);
+                                isBreak = true;
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            lock (_logLock)
+                                logBox.AppendText("\nApi error -> Skip.\n");
+                            _loadErr++;
+                            isBreak = true;
+                            break;
                         }
                     }
-                    else
-                    {
-                        lock (_logLock)
-                            logBox.AppendText("\nApi error -> Skip.\n");
-                        _loadErr++;
-                    }
-
-                    continue;
                 }
+                //if no valid request after all, skip this request
+                if (isBreak)
+                    continue;
+
                 _apiReq++;
                 //search result for hits on target page
 
@@ -343,7 +351,7 @@ namespace WikiGui
             return isHit;
         }
 
-        public int evaluateApiRequest(ref string apiRet, int depth, ref string lastBranch)
+        private int evaluateApiRequest(ref string apiRet, int depth, ref string lastBranch)
         {
             int thisHits = 0;
             int targetIndex = 0;
@@ -393,7 +401,7 @@ namespace WikiGui
             return thisHits;
         }
 
-        public int reactToReturn(int ret, ref string nHtml, ref string html, int depth)
+        private int reactToReturn(int ret, ref string nHtml, ref string html, int depth)
         {
             if (ret >= 1)
             {
@@ -461,21 +469,45 @@ namespace WikiGui
             //    Properties.Settings.Default.BlackListSave.Add(blackList[i]);
         }
 
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                startBtn_Click(sender, e);
+                logBox.Focus();
+            }
+        }
+
+        private void urlBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            Form1_KeyDown(sender, e);
+        }
+
+        private void targetBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            Form1_KeyDown(sender, e);
+        }
+
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
             _refreshDelay = (int)delayBox.Value;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void pauseBtn_Click(object sender, EventArgs e)
         {
             if (_isRunning)
             {
                 for (int i = 0; i < _threadsToRun; i++)
                 {
-                    _threadList[i].Suspend();
+                    try
+                    {
+                        _threadList[i].Suspend();
+                    }
+                    catch { continue; }
                 }
                 timer.Stop();
-                stopBtn.Text = "Resume";
+                pauseBtn.Text = "Resume";
+                startBtn.Text = "Paused";
                 _isRunning = false;
             }
             else
@@ -483,24 +515,42 @@ namespace WikiGui
                 timer.Start();
                 for (int i = 0; i < _threadsToRun; i++)
                 {
-                    _threadList[i].Resume();
+                    try
+                    {
+                        _threadList[i].Resume();
+                    }
+                    catch { continue; }
                 }
                 _isRunning = true;
-                stopBtn.Text = "Stop";
+                pauseBtn.Text = "Pause";
+                startBtn.Text = "Working...";
             }
         }
 
-        private void resumeBtn_Click(object sender, EventArgs e)
+        private void abortBtn_Click(object sender, EventArgs e)
         {
-            Application.Restart();
+            for (int i = 0; i < _threadsToRun; i++)
+            {
+                if (_workerFinished[i] == false)
+                {
+                    try
+                    {
+                        _workerFinished[i] = true;
+                        _threadList[i].Abort();
+                    }
+                    catch { continue; }
+                }
+            }
+
+            allWorkersFinished();
         }
 
         //blackList button
-        private void button2_Click(object sender, EventArgs e)
+        private void blackListBtn_Click(object sender, EventArgs e)
         {
             var contextPos = this.Location;
-            contextPos.X += blackListButton.Location.X;
-            contextPos.Y += blackListButton.Location.Y;
+            contextPos.X += blackListBtn.Location.X;
+            contextPos.Y += blackListBtn.Location.Y;
 
             blacklistContext.Show(contextPos);
         }
@@ -523,10 +573,11 @@ namespace WikiGui
             urlBox.Enabled = false;
             targetBox.Enabled = false;
             depthBox.Enabled = false;
-            blackListButton.Enabled = false;
+            blackListBtn.Enabled = false;
             numericThreads.Enabled = false;
             apiCheck.Enabled = false;
-            stopBtn.Enabled = true;
+            pauseBtn.Enabled = true;
+            abortBtn.Enabled = true;
 
             _ignoreYears = yearsToolStrip.Checked;
             _disableApi = apiCheck.Checked;
@@ -579,11 +630,9 @@ namespace WikiGui
                 try
                 {
                     _threadList.Add(new Thread(() => threadRoutine(x)));
-                    //workerThreads[i] = new Thread(() => threadRoutine(x));
 
-                    //workerThreads[i].IsBackground = true;
                     _threadList[i].IsBackground = true;
-                    //workerThreads[i].Start();
+
                     _workerFinished.Add(false);
                 }
                 catch (Exception)
@@ -596,8 +645,10 @@ namespace WikiGui
             for (int i = 0; i < _threadsToRun; i++)
             {
                 _threadList[i].Start();
-                //workerThreads[i].Start();
             }
+
+            //button1_Click(sender, e);
+            //resumeBtn_Click(sender, e);
 
             //refresh the Ui-indicators
             await Delay();
@@ -780,12 +831,11 @@ namespace WikiGui
             finished();
         }
 
-        public void finished()
+        private void finished()
         {
             _threadList.Clear();
 
             _isRunning = false;
-            stopBtn.Enabled = false;
 
             timer.Stop();
 
@@ -808,15 +858,19 @@ namespace WikiGui
             logBox.AppendText(_loadErr + " Http Errors occured\n");
 
             startBtn.Text = "Start";
+            pauseBtn.Text = "Pause";
             startBtn.Enabled = true;
             countryBox.Enabled = true;
             urlBox.Enabled = true;
 
-            blackListButton.Enabled = true;
+            blackListBtn.Enabled = true;
             targetBox.Enabled = true;
             depthBox.Enabled = true;
             numericThreads.Enabled = true;
             apiCheck.Enabled = true;
+
+            pauseBtn.Enabled = false;
+            abortBtn.Enabled = false;
         }
 
         //Refresh Ui while rekursion is active

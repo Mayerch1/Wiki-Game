@@ -89,6 +89,7 @@
             this.listBox.Size = new System.Drawing.Size(889, 485);
             this.listBox.Sorted = true;
             this.listBox.TabIndex = 5;
+            this.listBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listView_KeyDown);
             // 
             // donateBtn
             // 
@@ -117,6 +118,7 @@
             this.MinimumSize = new System.Drawing.Size(478, 116);
             this.Name = "Blacklist";
             this.Text = "BlackListEntry";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mainPage_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

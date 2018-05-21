@@ -68,7 +68,15 @@ namespace WikiGui
                 addButton_Click(sender, e);
         }
 
-        
+        private void mainPage_KeyDown(object sender, KeyEventArgs e)
+        {
+        }
+
+        private void listView_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+                rmButton_Click(sender, e);
+        }
 
         private void donateBtn_Click(object sender, EventArgs e)
         {

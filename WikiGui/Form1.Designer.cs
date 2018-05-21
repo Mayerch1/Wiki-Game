@@ -59,15 +59,15 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.apiCheck = new System.Windows.Forms.CheckBox();
             this.randBtn = new System.Windows.Forms.Button();
-            this.blackListButton = new System.Windows.Forms.Button();
-            this.stopBtn = new System.Windows.Forms.Button();
+            this.blackListBtn = new System.Windows.Forms.Button();
+            this.pauseBtn = new System.Windows.Forms.Button();
             this.blacklistContext = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.yearsToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.customBlacklistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.numericThreads = new System.Windows.Forms.NumericUpDown();
             this.threadLbl = new System.Windows.Forms.Label();
-            this.resetBtn = new System.Windows.Forms.Button();
+            this.abortBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.depthBox)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.delayBox)).BeginInit();
@@ -96,6 +96,7 @@
             this.urlBox.Size = new System.Drawing.Size(172, 20);
             this.urlBox.TabIndex = 1;
             this.urlBox.Text = "Nacktschnecke";
+            this.urlBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.urlBox_KeyDown);
             // 
             // label1
             // 
@@ -269,6 +270,7 @@
             this.targetBox.Size = new System.Drawing.Size(317, 20);
             this.targetBox.TabIndex = 19;
             this.targetBox.Text = "Adolf_Hitler";
+            this.targetBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.targetBox_KeyDown);
             // 
             // depthLbl
             // 
@@ -380,7 +382,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.Controls.Add(this.apiCheck);
             this.panel2.Controls.Add(this.randBtn);
-            this.panel2.Controls.Add(this.blackListButton);
+            this.panel2.Controls.Add(this.blackListBtn);
             this.panel2.Controls.Add(this.urlBox);
             this.panel2.Controls.Add(this.countryBox);
             this.panel2.Controls.Add(this.targetBox);
@@ -412,27 +414,27 @@
             this.randBtn.UseVisualStyleBackColor = true;
             this.randBtn.Click += new System.EventHandler(this.randBtn_Click);
             // 
-            // blackListButton
+            // blackListBtn
             // 
-            this.blackListButton.Location = new System.Drawing.Point(402, 0);
-            this.blackListButton.Name = "blackListButton";
-            this.blackListButton.Size = new System.Drawing.Size(75, 23);
-            this.blackListButton.TabIndex = 23;
-            this.blackListButton.Text = "Blacklist...";
-            this.blackListButton.UseVisualStyleBackColor = true;
-            this.blackListButton.Click += new System.EventHandler(this.button2_Click);
+            this.blackListBtn.Location = new System.Drawing.Point(402, 0);
+            this.blackListBtn.Name = "blackListBtn";
+            this.blackListBtn.Size = new System.Drawing.Size(75, 23);
+            this.blackListBtn.TabIndex = 23;
+            this.blackListBtn.Text = "Blacklist...";
+            this.blackListBtn.UseVisualStyleBackColor = true;
+            this.blackListBtn.Click += new System.EventHandler(this.blackListBtn_Click);
             // 
-            // stopBtn
+            // pauseBtn
             // 
-            this.stopBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.stopBtn.Enabled = false;
-            this.stopBtn.Location = new System.Drawing.Point(816, 596);
-            this.stopBtn.Name = "stopBtn";
-            this.stopBtn.Size = new System.Drawing.Size(61, 21);
-            this.stopBtn.TabIndex = 28;
-            this.stopBtn.Text = "Stop";
-            this.stopBtn.UseVisualStyleBackColor = true;
-            this.stopBtn.Click += new System.EventHandler(this.button1_Click);
+            this.pauseBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.pauseBtn.Enabled = false;
+            this.pauseBtn.Location = new System.Drawing.Point(816, 596);
+            this.pauseBtn.Name = "pauseBtn";
+            this.pauseBtn.Size = new System.Drawing.Size(61, 21);
+            this.pauseBtn.TabIndex = 28;
+            this.pauseBtn.Text = "Pause";
+            this.pauseBtn.UseVisualStyleBackColor = true;
+            this.pauseBtn.Click += new System.EventHandler(this.pauseBtn_Click);
             // 
             // blacklistContext
             // 
@@ -498,26 +500,27 @@
             this.threadLbl.TabIndex = 31;
             this.threadLbl.Text = "Number of threads";
             // 
-            // resetBtn
+            // abortBtn
             // 
-            this.resetBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.resetBtn.Location = new System.Drawing.Point(883, 596);
-            this.resetBtn.Name = "resetBtn";
-            this.resetBtn.Size = new System.Drawing.Size(61, 21);
-            this.resetBtn.TabIndex = 32;
-            this.resetBtn.Text = "Reset";
-            this.resetBtn.UseVisualStyleBackColor = true;
-            this.resetBtn.Click += new System.EventHandler(this.resumeBtn_Click);
+            this.abortBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.abortBtn.Enabled = false;
+            this.abortBtn.Location = new System.Drawing.Point(883, 596);
+            this.abortBtn.Name = "abortBtn";
+            this.abortBtn.Size = new System.Drawing.Size(61, 21);
+            this.abortBtn.TabIndex = 32;
+            this.abortBtn.Text = "Abort";
+            this.abortBtn.UseVisualStyleBackColor = true;
+            this.abortBtn.Click += new System.EventHandler(this.abortBtn_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(973, 624);
-            this.Controls.Add(this.resetBtn);
+            this.Controls.Add(this.abortBtn);
             this.Controls.Add(this.threadLbl);
             this.Controls.Add(this.numericThreads);
-            this.Controls.Add(this.stopBtn);
+            this.Controls.Add(this.pauseBtn);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.logBox);
@@ -528,6 +531,7 @@
             this.Name = "Form1";
             this.Text = "The Wiki-Game";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.depthBox)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -568,8 +572,8 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label delayLbl;
         private System.Windows.Forms.NumericUpDown delayBox;
-        private System.Windows.Forms.Button stopBtn;
-        private System.Windows.Forms.Button blackListButton;
+        private System.Windows.Forms.Button pauseBtn;
+        private System.Windows.Forms.Button blackListBtn;
         private System.Windows.Forms.ContextMenuStrip blacklistContext;
         private System.Windows.Forms.ToolStripMenuItem yearsToolStrip;
         private System.Windows.Forms.ToolStripMenuItem customBlacklistToolStripMenuItem;
@@ -580,7 +584,7 @@
         private System.Windows.Forms.Label threadLbl;
         private System.Windows.Forms.CheckBox apiCheck;
         private System.Windows.Forms.Button randBtn;
-        private System.Windows.Forms.Button resetBtn;
+        private System.Windows.Forms.Button abortBtn;
     }
 }
 
